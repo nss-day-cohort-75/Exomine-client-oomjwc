@@ -49,6 +49,7 @@ governors.js->colonies.js:call for render of colonies data
 main.js<--colonies.js:call to render colony information
 note over main.js:render colony
 User->facilities.js:select facility from dropdown
+facilities.js->transientState.js:eventListener triggered to change the facility property of the transientState
 facilities.js->facilitiesMinerals.js:call to get minerals in facility
 facilitiesMinerals.js->database.json:fetch mineral information from database
 facilitiesMinerals.js<--database.json:return mineral information from database
@@ -56,6 +57,7 @@ facilities.js<--facilitiesMinerals.js:return mineral information in called facil
 main.js<--facilities.js:call to rerender facility
 note over main.js: render facility
 User->facilitiesMinerals.js:mineral button is selected
+facilitiesMinerals.js->transientState.js:eventListener triggered to change the facility property of the transientState
 facilitiesMinerals.js->displayCart.js:send information to cart to be updated
 main.js<--displayCart.js:call for cart to be rerendered
 note over main.js: render cart inventory
