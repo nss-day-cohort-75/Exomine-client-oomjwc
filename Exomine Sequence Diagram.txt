@@ -1,0 +1,75 @@
+title Exomine
+
+participant User
+participant main.js
+participant governors.js
+participant facilities.js
+participant facilitiesMinerals.js
+participant colonies.js
+participant displayCart.js
+participant cartButton.js
+participant database.json
+participant transientState.js
+
+
+note over main.js:select container to store innerHTML\ncreate containers for each section to render individually
+main.js->governors.js:call for the options of governors
+governors.js->database.json:fetch governers from database
+governors.js<--database.json:return governors from database
+governors.js-->main.js:return governor data to display
+note over main.js: render governers
+
+main.js->facilities.js:call for options of facilities
+facilities.js->facilitiesMinerals.js:call to display current facility
+facilitiesMinerals.js->database.json:fetch facilities from database
+facilitiesMinerals.js<--database.json:return facilities from database
+facilities.js<--facilitiesMinerals.js:return html to display current facility minerals
+main.js<-facilities.js:return facility data to display
+note over main.js: render facilities
+
+main.js->colonies.js:call for mineral information from colonies
+colonies.js->database.json:fetch colonies from database
+colonies.js<--database.json:return colonies from database
+main.js<--colonies.js:return mineral data to display
+note over main.js:render minerals in colony
+main.js->displayCart.js:display data in cart
+main.js<--displayCart.js:return data from cart
+note over main.js:render cart inventory
+main.js->cartButton.js:call function to display cart purchase button
+main.js<--cartButton.js:return purchase button HTML
+note over main.js: render cart button
+note over main.js:intial page has rendered
+note over User: User interactions
+
+User->main.js:select governor from dropdown
+main.js->governors.js:trigger eventListener for governor change
+governors.js->transientState.js:change the governor property in transientState
+
+governors.js->colonies.js:call for render of colonies data
+main.js<--colonies.js:call to render colony information
+note over main.js:render colony
+User->facilities.js:select facility from dropdown
+facilities.js->facilitiesMinerals.js:call to get minerals in facility
+facilitiesMinerals.js->database.json:fetch mineral information from database
+facilitiesMinerals.js<--database.json:return mineral information from database
+facilities.js<--facilitiesMinerals.js:return mineral information in called facility
+main.js<--facilities.js:call to rerender facility
+note over main.js: render facility
+User->facilitiesMinerals.js:mineral button is selected
+facilitiesMinerals.js->displayCart.js:send information to cart to be updated
+main.js<--displayCart.js:call for cart to be rerendered
+note over main.js: render cart inventory
+User->cartButton.js:click purchase minerals button
+cartButton.js->transientState.js:call for transient state to become permanent state
+database.json<--transientState.js:push transient state to database as a permanent order
+facilitiesMinerals.js<--cartButton.js:call for mineral inventory to be updated
+
+main.js<--facilitiesMinerals.js:call for mineral inventory to be rerendered
+note over main.js:render minerals
+colonies.js<--cartButton.js:call for colony inventory to be updated
+main.js<--colonies.js:call for colony inventory to be rerendered
+note over main.js:render colony
+
+displayCart.js<--cartButton.js:call to empty cart after completed purchase
+main.js<--displayCart.js:call for cart inventory to be rerendered
+note over main.js: render cart inventory
