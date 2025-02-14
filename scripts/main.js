@@ -7,7 +7,7 @@ let container = document.querySelector("#container")
 export const render = async (facilityMineralId) => {
     const governorHTML = await governorOptions()
     const facilityHTML = await getFacilities()
-    const colonyMineralsHTML = ''
+    const colonyMineralsHTML = await colonyMinerals ()
     const facilityMineralsHTML = await getFacilityMinerals(facilityMineralId)
     const cartButtonHTML = ''
 
