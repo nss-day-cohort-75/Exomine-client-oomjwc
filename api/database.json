@@ -42,7 +42,7 @@
         {"id": 7,"facilityId": 3,"mineralsId": 2,"quantity": 107},
         {"id": 8,"facilityId": 5,"mineralsId": 3,"quantity": 162},
         {"id": 9,"facilityId": 2,"mineralsId": 4,"quantity": 62},
-        {"id": 10,"facilityId": 1,"mineralsId": 5,"quantity": 600},
+        {"id": 10,"facilityId": 1,"mineralsId": 5,"quantity": 600}
     ],
     "facilities": [
         {"id": 1,"name": "Celestial Excavation Hub","isActive": true},

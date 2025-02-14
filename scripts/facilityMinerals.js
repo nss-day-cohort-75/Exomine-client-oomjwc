@@ -37,7 +37,7 @@ document.addEventListener(
             getFacilityMinerals(value)
 
             const renderFacilityMinerals = new CustomEvent('renderFacilityMinerals')
-            document.createEvent(renderFacilityMinerals)
+            document.dispatchEvent(renderFacilityMinerals)
         }
     }
 )
