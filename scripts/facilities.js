@@ -4,7 +4,9 @@ export const getFacilities = async () => {
     const facilities = await response.json()
     
     const facilityOptions = facilities.map(facility => {
-        return `<option value="${facility.id}">${facility.name}</option>`
+        if (facility.isActive) {
+            return `<option value="${facility.id}">${facility.name}</option>`
+        }
     }).join('')
 
     const facilitiesHTML = `

@@ -16,6 +16,7 @@ export const setFacilityMineral = (facilityMineralId) => {
     state.facilityMineralId = facilityMineralId
     console.log(state)
     document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
+    console.table(state)
 }
 
 export const setGovernor = (governorId) => {

@@ -6,12 +6,12 @@ import { purchaseOrderButton } from "./cartButton.js"
 
 let container = document.querySelector("#container")
 
-export const render = async (facilityMineralId) => {
+const render = async () => {
     const governorHTML = await governorOptions()
     const facilityHTML = await getFacilities()
     const colonyMineralsHTML = await colonyMinerals ()
-    const facilityMineralsHTML = await getFacilityMinerals(facilityMineralId)
-    const cartButtonHTML = purchaseOrderButton()
+    const facilityMineralsHTML = getFacilityMinerals()
+    const cartButtonHTML = ''
 
     const composedHTML = `
     <h1>Solar System Mining System</h1>
