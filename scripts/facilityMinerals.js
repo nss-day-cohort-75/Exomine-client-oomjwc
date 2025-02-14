@@ -1,3 +1,6 @@
+import { render } from "./main.js"
+import { setFacility, setFacilityMineral } from "./TransientState.js"
+
 export const getFacilityMinerals = async (id) => {
 
     const response = await fetch('http://localhost:8088/facilityMinerals?_expand=minerals&_expand=facility')
@@ -34,10 +37,21 @@ document.addEventListener(
         const {id, value} = changeEvent.target
 
         if (id === 'facilities') {
+            setFacility(value)
             getFacilityMinerals(value)
 
-            const renderFacilityMinerals = new CustomEvent('renderFacilityMinerals')
-            document.dispatchEvent(renderFacilityMinerals)
+            render(value)
+        }
+    }
+)
+
+document.addEventListener(
+    'click',
+    (changeEvent) => {
+        const {name, value} = changeEvent.target
+
+        if (name === 'facilitiyMinerals') {
+            setFacilityMineral(value)
         }
     }
 )
