@@ -16,7 +16,7 @@ export const governorOptions = async() => {
         governorHTML += govStringArray.join('')
         governorHTML += '</select>'
         return governorHTML
-}
+} 
 
 // const handleGovernorChange = (changeEvent) => {
 //     if (changeEvent.target.id === "governor") {
