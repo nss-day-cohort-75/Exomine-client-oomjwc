@@ -11,6 +11,11 @@ export const setFacility = (facilityId) => {
     document.dispatchEvent(new CustomEvent("facilityChanged"))
 }
 
+export const setFacilityMineral = (facilityMineralId) => {
+    state.facilityMineralId = facilityMineralId
+    document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
+}
+
 export const setGovernor = (governorId) => {
     state.governorId = governorId
     document.dispatchEvent(new CustomEvent("governorChanged"))
