@@ -35,6 +35,5 @@ export const purchaseMineral = () => {
     */
 
 
-
     document.dispatchEvent(new CustomEvent("purchaseSubmitted"))
 }

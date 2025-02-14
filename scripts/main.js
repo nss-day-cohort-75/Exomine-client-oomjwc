@@ -1,5 +1,7 @@
 import { governorOptions } from "./governors.js"
 import { colonyMinerals } from "./colonies.js"
+import { purchaseOrderButton } from "./cartButton.js"
+
 let container = document.querySelector("#container")
 
 const render = async () => {
