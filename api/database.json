@@ -33,11 +33,16 @@
         {"id": 5,"name": "Darkstar Ore"}
     ],
     "facilityMinerals": [
-        {"id": 1,"facilityId": 1,"mineralsId": 1},
-        {"id": 2,"facilityId": 2,"mineralsId": 2},
-        {"id": 3,"facilityId": 3,"mineralsId": 3},
-        {"id": 4,"facilityId": 4,"mineralsId": 4},
-        {"id": 5,"facilityId": 5,"mineralsId": 5}
+        {"id": 1,"facilityId": 1,"mineralsId": 1,"quantity": 99},
+        {"id": 2,"facilityId": 2,"mineralsId": 2,"quantity": 107},
+        {"id": 3,"facilityId": 3,"mineralsId": 3,"quantity": 162},
+        {"id": 4,"facilityId": 4,"mineralsId": 4,"quantity": 62},
+        {"id": 5,"facilityId": 5,"mineralsId": 5,"quantity": 600},
+        {"id": 6,"facilityId": 4,"mineralsId": 1,"quantity": 99},
+        {"id": 7,"facilityId": 3,"mineralsId": 2,"quantity": 107},
+        {"id": 8,"facilityId": 5,"mineralsId": 3,"quantity": 162},
+        {"id": 9,"facilityId": 2,"mineralsId": 4,"quantity": 62},
+        {"id": 10,"facilityId": 1,"mineralsId": 5,"quantity": 600},
     ],
     "facilities": [
         {"id": 1,"name": "Celestial Excavation Hub","isActive": true},
