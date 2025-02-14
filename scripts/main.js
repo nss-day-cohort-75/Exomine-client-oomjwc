@@ -1,7 +1,7 @@
 import { getFacilities } from "./facilities.js"
 import { getFacilityMinerals } from "./facilityMinerals.js"
 import { governorOptions } from "./governors.js"
-
+import { colonyMinerals } from "./colonies.js"
 let container = document.querySelector("#container")
 
 export const render = async (facilityMineralId) => {
