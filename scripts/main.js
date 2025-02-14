@@ -1,11 +1,11 @@
 import { governorOptions } from "./governors.js"
-
+import { colonyMinerals } from "./colonies.js"
 let container = document.querySelector("#container")
 
 const render = async () => {
     const governorHTML = await governorOptions()
     const facilityHTML = ''
-    const colonyMineralsHTML = ''
+    const colonyMineralsHTML = await colonyMinerals ()
     const facilityMineralsHTML = ''
     const cartButtonHTML = ''
 
