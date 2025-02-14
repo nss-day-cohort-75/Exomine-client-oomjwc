@@ -1,3 +1,6 @@
 export const Cart = async () => {
-    const response = await fetch("http://localhost:8088/")
+    let cartHTML = ""
+
+    document.addEventListener("purchaseSubmitted", event => { cartHTML = "" } )
+    return cartHTML
 }
