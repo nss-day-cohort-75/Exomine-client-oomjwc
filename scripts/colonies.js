@@ -16,7 +16,7 @@ document.addEventListener("change", async (event) => {
 
 
 
-
+// fetches all colony mineral data 
 export const colonyMineralsInventory = async () => {
     const response = await fetch("http://localhost:8088/colonyMinerals"); // Fetch colony minerals
     const data = await response.json();
@@ -52,7 +52,7 @@ const updateColonyInventory = async (selectedGovernorId) => {
     
     const colonyId = selectedGovernor.coloniesId // get their assigned colony ID
    
-    const colonyMinerals = data.colonyMineralData.filter(mineral => mineral.colonyId === colonyId) // get minerals for this colony
+    const colonyMinerals = data.colonyMineralData.filter(mineral => mineral.colonyId === colonyId) // filters to get minerals for this colony
     
     // generate HTML for colony minerals
     const colonyMineralHTML = colonyMinerals.map(colonyMineral => {
@@ -60,7 +60,7 @@ const updateColonyInventory = async (selectedGovernorId) => {
         return `<li>${mineral.name}: ${colonyMineral.quantity} tons</li>`; // HTML of name and quantity
     });
 
-    document.getElementById("inventoryList").innerHTML = colonyMineralHTML
+    document.getElementById("inventoryList").innerHTML = colonyMineralHTML.join("")
 
 } 
 
