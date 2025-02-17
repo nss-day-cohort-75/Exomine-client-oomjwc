@@ -31,6 +31,14 @@ export const setColony = (colonyId) => {
     document.dispatchEvent(new CustomEvent("colonyChanged"))
 }
 
+export const getFacility = () => {
+    return state.facilityId
+}
+
+export const getFacilityMineral = () => {
+    return state.facilityMineralId
+}
+
 export const purchaseMineral = () => {
     /*
         Does the chosen governor's colony already own some of this mineral?
