@@ -7,8 +7,9 @@ export const colonyMineralsInventory = async () => {
 // provides HTML for structure of inventory display
 export const colonyMinerals = async () => {
   return `
-        <section id="colonyInventory">
-            <ul id="inventoryList">Minerals</ul>
+        <section id="colonyInventory"> <ul
+            <li>Minerals</li>
+            </ul>
         </section>
     `;
 };
@@ -54,7 +55,7 @@ const updateColonyInventory = async (selectedGovernorId) => {
     return `<li>${mineral.name}: ${colonyMineral.quantity} tons</li>`; // HTML of name and quantity
   });
 
-  document.getElementById("inventoryList").innerHTML =
+  document.getElementById("colonyInventory").innerHTML =
     colonyName + colonyMineralHTML.join("");
 };
 

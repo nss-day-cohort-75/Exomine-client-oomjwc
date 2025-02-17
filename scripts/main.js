@@ -11,7 +11,7 @@ const render = async () => {
     const facilityHTML = await getFacilities()
     const colonyMineralsHTML = await colonyMinerals ()
     const facilityMineralsHTML = getFacilityMinerals()
-    const cartButtonHTML = ''
+    const cartButtonHTML =  purchaseOrderButton ()
 
     const composedHTML = `
     <h1>Solar System Mining System</h1>
