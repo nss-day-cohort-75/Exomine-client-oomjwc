@@ -3,6 +3,7 @@ import { getFacilityMinerals } from "./facilityMinerals.js"
 import { governorOptions } from "./governors.js"
 import { colonyMinerals } from "./colonies.js"
 import { purchaseOrderButton } from "./cartButton.js"
+import { Cart } from "./displayCart.js"
 
 let container = document.querySelector("#container")
 
@@ -11,7 +12,8 @@ const render = async () => {
     const facilityHTML = await getFacilities()
     const colonyMineralsHTML = await colonyMinerals ()
     const facilityMineralsHTML = getFacilityMinerals()
-    const cartButtonHTML = ''
+    const cartButtonHTML = purchaseOrderButton()
+    const cartHTML = await Cart()
 
     const composedHTML = `
     <h1>Solar System Mining System</h1>
@@ -38,6 +40,7 @@ const render = async () => {
 
         <section class="cart">
             <h2>Space Cart</h2>
+            ${cartHTML}
             ${cartButtonHTML}
         </section>
     </article>
