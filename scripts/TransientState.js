@@ -8,22 +8,26 @@ const state = {
 
 export const setFacility = (facilityId) => {
     state.facilityId = facilityId
+    console.log(state)
     document.dispatchEvent(new CustomEvent("facilityChanged"))
 }
 
 export const setFacilityMineral = (facilityMineralId) => {
     state.facilityMineralId = facilityMineralId
+    console.log(state)
     document.dispatchEvent(new CustomEvent("facilityMineralChanged"))
     console.table(state)
 }
 
 export const setGovernor = (governorId) => {
     state.governorId = governorId
+    console.log(state)
     document.dispatchEvent(new CustomEvent("governorChanged"))
 }
 
 export const setColony = (colonyId) => {
     state.colonyId = colonyId
+    console.log(state)
     document.dispatchEvent(new CustomEvent("colonyChanged"))
 }
 
@@ -39,7 +43,6 @@ export const purchaseMineral = () => {
 
         Only the foolhardy try to solve this problem with code.
     */
-
 
 
     document.dispatchEvent(new CustomEvent("purchaseSubmitted"))
