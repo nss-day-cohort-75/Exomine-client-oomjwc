@@ -7,6 +7,7 @@ export const handlePurchaseMineral = (clickEvent) => {
 }
 
 export const purchaseOrderButton = () => {
+    //
     document.addEventListener("click", handlePurchaseMineral)
     let html = "<button id='purchaseMineral'>Purchase Mineral</button>"
     return html
