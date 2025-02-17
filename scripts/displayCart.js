@@ -32,7 +32,7 @@ const mineralSelected = async () =>{
 
             //}
 
-            cartHTML += <p>1 ton of ${mineral.minerals.name}</p>
+            cartHTML += `<p>1 ton of ${mineral.minerals.name}</p>`
         }
     });
 
