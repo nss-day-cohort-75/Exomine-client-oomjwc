@@ -31,7 +31,7 @@ export const setColony = (colonyId) => {
     document.dispatchEvent(new CustomEvent("colonyChanged"))
 }
 
-export const purchaseMineral = () => {
+export const purchaseMineral = async () => {
     /*
         Does the chosen governor's colony already own some of this mineral?
             - If yes, what should happen?
@@ -44,6 +44,73 @@ export const purchaseMineral = () => {
         Only the foolhardy try to solve this problem with code.
     */
 
+    const colonyResponse = await fetch('http://localhost:8088/colonyMinerals')
+    const colonyMinerals = await colonyResponse.json()
+
+    const facilityResponse = await fetch('http://localhost:8088/facilityMinerals')
+    const facilityMinerals = await facilityResponse.json()
+
+    let colonyOwn = false
+
+    colonyMinerals.filter(joinTable => {
+        if (joinTable.mineraId === state.colonyMineralId && joinTable.colonyId === state.colonyId) {
+            colonyOwn = true
+        }
+    })
+
+    if (colonyOwn) {
+        colonyMinerals.filter(joinTable => {
+
+            if (joinTable.mineralId === state.colonyMineralId && joinTable.colonyId === state.colonyId) {
+
+                facilityMinerals.filter(joinTable => {
+
+                    if (joinTable.mineralsId === state.facilityMineralId && joinTable.colonyId === state.facilityId) {
+
+                        //use PUT to update facilityMinerals with -1 and colonyMinerals with +1
+                    }
+                })
+            }
+        })
+    } else {
+        //use POST to create new join table for colonyMinerals
+
+        post({ "colonyId": state.colonyId, "mineralId": state.facilityMineralId, "quantity": 1 })
+
+        facilityMinerals.filter(joinTable => {
+
+            if (joinTable.mineralsId === state.facilityMineralId && joinTable.facilityId === state.facilityId) {
+
+                //use PUT to update facility inventory with -1
+
+                Put({"id": joinTable.id,"facilityId": joinTable.facilityId,"mineralsId": joinTable.mineralsId,"quantity": joinTable.quantity -1},joinTable.id)
+            }
+        })
+    }
+
 
     document.dispatchEvent(new CustomEvent("purchaseSubmitted"))
+}
+
+
+const post = async (objectToPost) => {
+    const postOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(objectToPost)
+    }
+    const response = await fetch('http://localhost:8088/colonyMinerals', postOptions)
+}
+
+const Put = async (objectToPut, joinTableId) => {
+    const postOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(objectToPut)
+    }
+    const response = await fetch(`http://localhost:8088/colonyMinerals${joinTableId}`, postOptions)
 }
