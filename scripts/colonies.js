@@ -51,6 +51,10 @@ const updateColonyInventory = async (selectedGovernorId) => {
     const selectedGovernor = data.governors.find(gov => gov.id === selectedGovernorId) // find selected gov
     
     const colonyId = selectedGovernor.coloniesId // get their assigned colony ID
+
+    // Find the colony name
+    const colony = data.colonies.find(colony => colony.id === colonyId);
+    const colonyName = colony.name
    
     const colonyMinerals = data.colonyMineralData.filter(mineral => mineral.colonyId === colonyId) // filters to get minerals for this colony
     
@@ -60,7 +64,7 @@ const updateColonyInventory = async (selectedGovernorId) => {
         return `<li>${mineral.name}: ${colonyMineral.quantity} tons</li>`; // HTML of name and quantity
     });
 
-    document.getElementById("inventoryList").innerHTML = colonyMineralHTML.join("")
+    document.getElementById("inventoryList").innerHTML = colonyName + colonyMineralHTML.join("")
 
 } 
 
