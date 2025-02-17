@@ -1,10 +1,4 @@
-/* General Page Styling */
-body {
-    font-family: Arial, sans-serif;
-    text-align: left;
-    padding: 20px;
-    background-color: #f5f5f5;
-}
+
 
 /* Ensure h1 is centered */
 h1 {
@@ -13,6 +7,12 @@ h1 {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 16px;
 }
 
 #colonyInventory {
@@ -25,11 +25,24 @@ h1 {
     padding: 20px;
     text-align:center;
     border: 2px dotted black;
-    border-radius: 8px;
+    border-radius: 6px;
+    width: 50%;
+    margin: 20px auto;
 }
-#purchaseMineral {
+#purchaseContainer {
+    width: 20%; 
+    margin-left: auto; 
     padding: 20px;
-    text-align: right;
-    border-radius: 4px;
+    text-align: center;
     border: 2px dotted black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+#governor, #facilities {
+    padding: 5px;
+    font-size: 12px;
 }

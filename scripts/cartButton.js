@@ -6,9 +6,13 @@ export const handlePurchaseMineral = (clickEvent) => {
     }
 }
 
+document.addEventListener("click", handlePurchaseMineral);
+
 export const purchaseOrderButton = () => {
-    //
-    document.addEventListener("click", handlePurchaseMineral)
-    let html = "<button id='purchaseMineral'>Purchase Mineral</button>"
+    let html = `
+    <section id="purchaseContainer">
+     <h2>Space Cart</h2>
+    <button id='purchaseMineral'>Purchase Mineral</button>
+    </section> `
     return html
 }
