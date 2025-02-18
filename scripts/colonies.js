@@ -1,3 +1,5 @@
+import { setColony } from "./TransientState.js";
+
 // fetches  colony mineral data
 export const colonyMineralsInventory = async () => {
   const response = await fetch("http://localhost:8088/colonyMinerals"); 
@@ -59,10 +61,23 @@ const updateColonyInventory = async (selectedGovernorId) => {
     colonyName + colonyMineralHTML.join("");
 };
 
+let transferVariable = 0
+
 // listens for changes in the governor drop down
 document.addEventListener("change", async (event) => {
   if (event.target.id === "governor") {
     const selectedGovernorId = parseInt(event.target.value);
     updateColonyInventory(selectedGovernorId);
+    transferVariable = selectedGovernorId
+
+    const selectedOption = event.target.options[event.target.selectedIndex]
+    setColony(parseInt(selectedOption.dataset.colony))
   }
 });
+
+document.addEventListener(
+  'generateFacilityAndColonyMinerals',
+  () => {
+      document.querySelector("#inventoryList").innerHTML = updateColonyInventory(transferVariable)
+    }
+)

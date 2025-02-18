@@ -1,54 +1,247 @@
-{   "governors": [
-    {"id": 1,"name": "Glorb Harrington","isActive": true,"coloniesId": 1},
-    {"id": 2,"name": "Margaret Thompson","isActive": true,"coloniesId": 2},
-    {"id": 3,"name": "Zilliam Starr","isActive": true,"coloniesId": 3},
-    {"id": 4,"name": "Lazer Razor","isActive": false,"coloniesId": 4},
-    {"id": 5,"name": "Nova Thorne","isActive": true,"coloniesId": 5},
-    {"id": 6,"name": "Ham Sammich","isActive": true,"coloniesId": 3},
-    {"id": 7,"name": "Xena Warrior-Princess","isActive": true,"coloniesId": 4},
-    {"id": 8,"name": "Krater Rubble","isActive": true,"coloniesId": 5}
-],
-    "colonies": [
-        {"id": 1,"name": "Nova Prime"},
-        {"id": 2,"name": "Kepler Outpost"},
-        {"id": 3,"name": "Titan Haven"},
-        {"id": 4,"name": "Andromeda Station"},
-        {"id": 5,"name": "Orion's Reach"}
-    ],
-    "colonyMinerals": [
-        {"id": 1,"colonyId": 1,"mineralId": 1,"quantity": 500},
-        {"id": 2,"colonyId": 2,"mineralId": 2,"quantity": 750},
-        {"id": 3,"colonyId": 3,"mineralId": 3,"quantity": 1200},
-        {"id": 4,"colonyId": 4,"mineralId": 4,"quantity": 450},
-        {"id": 5,"colonyId": 5,"mineralId": 5,"quantity": 900},
-        {"id": 6,"colonyId": 2,"mineralId": 4,"quantity": 750},
-        {"id": 7,"colonyId": 3,"mineralId": 2,"quantity": 1200},
-        {"id": 8,"colonyId": 4,"mineralId": 3,"quantity": 450}
-    ],
-    "minerals": [
-        {"id": 1,"name": "Xenorite"},
-        {"id": 2,"name": "Voidium"},
-        {"id": 3,"name": "Nebulite"},
-        {"id": 4,"name": "Quantium Shardium"},
-        {"id": 5,"name": "Darkstar Ore"}
-    ],
-    "facilityMinerals": [
-        {"id": 1,"facilityId": 1,"mineralsId": 1,"quantity": 99},
-        {"id": 2,"facilityId": 2,"mineralsId": 2,"quantity": 107},
-        {"id": 3,"facilityId": 3,"mineralsId": 3,"quantity": 162},
-        {"id": 4,"facilityId": 4,"mineralsId": 4,"quantity": 62},
-        {"id": 5,"facilityId": 5,"mineralsId": 5,"quantity": 600},
-        {"id": 6,"facilityId": 4,"mineralsId": 1,"quantity": 99},
-        {"id": 7,"facilityId": 3,"mineralsId": 2,"quantity": 107},
-        {"id": 8,"facilityId": 5,"mineralsId": 3,"quantity": 162},
-        {"id": 9,"facilityId": 2,"mineralsId": 4,"quantity": 62},
-        {"id": 10,"facilityId": 1,"mineralsId": 5,"quantity": 600}
-    ],
-    "facilities": [
-        {"id": 1,"name": "Celestial Excavation Hub","isActive": true},
-        {"id": 2,"name": "Nebula Core Refinery","isActive": false},
-        {"id": 3,"name": "Titan Deep Drills","isActive": true},
-        {"id": 4,"name": "Eclipse Ore Extractors","isActive": false},
-        {"id": 5,"name": "Quantum Harvest Station","isActive": true}
-    ]
+{
+  "governors": [
+    {
+      "id": 1,
+      "name": "Glorb Harrington",
+      "isActive": true,
+      "coloniesId": 1
+    },
+    {
+      "id": 2,
+      "name": "Margaret Thompson",
+      "isActive": true,
+      "coloniesId": 2
+    },
+    {
+      "id": 3,
+      "name": "Zilliam Starr",
+      "isActive": true,
+      "coloniesId": 3
+    },
+    {
+      "id": 4,
+      "name": "Lazer Razor",
+      "isActive": false,
+      "coloniesId": 4
+    },
+    {
+      "id": 5,
+      "name": "Nova Thorne",
+      "isActive": true,
+      "coloniesId": 5
+    },
+    {
+      "id": 6,
+      "name": "Ham Sammich",
+      "isActive": true,
+      "coloniesId": 3
+    },
+    {
+      "id": 7,
+      "name": "Xena Warrior-Princess",
+      "isActive": true,
+      "coloniesId": 4
+    },
+    {
+      "id": 8,
+      "name": "Krater Rubble",
+      "isActive": true,
+      "coloniesId": 5
+    }
+  ],
+  "colonies": [
+    {
+      "id": 1,
+      "name": "Nova Prime"
+    },
+    {
+      "id": 2,
+      "name": "Kepler Outpost"
+    },
+    {
+      "id": 3,
+      "name": "Titan Haven"
+    },
+    {
+      "id": 4,
+      "name": "Andromeda Station"
+    },
+    {
+      "id": 5,
+      "name": "Orion's Reach"
+    }
+  ],
+  "colonyMinerals": [
+    {
+      "id": 1,
+      "colonyId": 1,
+      "mineralId": 1,
+      "quantity": 500
+    },
+    {
+      "id": 2,
+      "colonyId": 2,
+      "mineralId": 2,
+      "quantity": 750
+    },
+    {
+      "id": 3,
+      "colonyId": 3,
+      "mineralId": 3,
+      "quantity": 1200
+    },
+    {
+      "id": 4,
+      "colonyId": 4,
+      "mineralId": 4,
+      "quantity": 450
+    },
+    {
+      "id": 5,
+      "colonyId": 5,
+      "mineralId": 5,
+      "quantity": 900
+    },
+    {
+      "id": 6,
+      "colonyId": 2,
+      "mineralId": 4,
+      "quantity": 750
+    },
+    {
+      "id": 7,
+      "colonyId": 3,
+      "mineralId": 2,
+      "quantity": 1200
+    },
+    {
+      "id": 8,
+      "colonyId": 4,
+      "mineralId": 3,
+      "quantity": 450
+    },
+    {
+      "colonyId": 1,
+      "mineralId": 5,
+      "quantity": 1,
+      "id": 9
+    },
+    {
+      "colonyId": 2,
+      "mineralId": 3,
+      "quantity": 4,
+      "id": 10
+    }
+  ],
+  "minerals": [
+    {
+      "id": 1,
+      "name": "Xenorite"
+    },
+    {
+      "id": 2,
+      "name": "Voidium"
+    },
+    {
+      "id": 3,
+      "name": "Nebulite"
+    },
+    {
+      "id": 4,
+      "name": "Quantium Shardium"
+    },
+    {
+      "id": 5,
+      "name": "Darkstar Ore"
+    }
+  ],
+  "facilityMinerals": [
+    {
+      "id": 1,
+      "facilityId": 1,
+      "mineralId": 1,
+      "quantity": 99
+    },
+    {
+      "id": 2,
+      "facilityId": 2,
+      "mineralId": 2,
+      "quantity": 107
+    },
+    {
+      "facilityId": 3,
+      "mineralId": 3,
+      "quantity": 158,
+      "id": 3
+    },
+    {
+      "id": 4,
+      "facilityId": 4,
+      "mineralId": 4,
+      "quantity": 62
+    },
+    {
+      "id": 5,
+      "facilityId": 5,
+      "mineralId": 5,
+      "quantity": 600
+    },
+    {
+      "id": 6,
+      "facilityId": 4,
+      "mineralId": 1,
+      "quantity": 99
+    },
+    {
+      "id": 7,
+      "facilityId": 3,
+      "mineralId": 2,
+      "quantity": 107
+    },
+    {
+      "id": 8,
+      "facilityId": 5,
+      "mineralId": 3,
+      "quantity": 162
+    },
+    {
+      "id": 9,
+      "facilityId": 2,
+      "mineralId": 4,
+      "quantity": 62
+    },
+    {
+      "facilityId": 1,
+      "mineralId": 5,
+      "quantity": 599,
+      "id": 10
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "Celestial Excavation Hub",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Nebula Core Refinery",
+      "isActive": false
+    },
+    {
+      "id": 3,
+      "name": "Titan Deep Drills",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Eclipse Ore Extractors",
+      "isActive": false
+    },
+    {
+      "id": 5,
+      "name": "Quantum Harvest Station",
+      "isActive": true
+    }
+  ]
 }
