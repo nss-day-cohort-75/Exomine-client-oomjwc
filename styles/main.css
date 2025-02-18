@@ -1,0 +1,48 @@
+
+
+/* Ensure h1 is centered */
+h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#colonyInventory {
+ padding: 20px;
+ text-align: right;
+ list-style: none;
+}
+
+#facilityMinerals {
+    padding: 20px;
+    text-align:center;
+    border: 2px dotted black;
+    border-radius: 6px;
+    width: 50%;
+    margin: 20px auto;
+}
+#purchaseContainer {
+    width: 20%; 
+    margin-left: auto; 
+    padding: 20px;
+    text-align: center;
+    border: 2px dotted black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+#governor, #facilities {
+    padding: 5px;
+    font-size: 12px;
+}

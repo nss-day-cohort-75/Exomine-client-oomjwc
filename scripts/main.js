@@ -39,7 +39,6 @@ const render = async () => {
         </section>
 
         <section class="cart">
-            <h2>Space Cart</h2>
             ${cartHTML}
             ${cartButtonHTML}
         </section>
