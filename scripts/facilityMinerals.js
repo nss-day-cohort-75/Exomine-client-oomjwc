@@ -5,7 +5,7 @@ export const getFacilityMinerals = () => {
 }
 
 const generateOptions = async (id) => {
-    const response = await fetch('http://localhost:8088/facilityMinerals?_expand=minerals&_expand=facility')
+    const response = await fetch('http://localhost:8088/facilityMinerals?_expand=mineral&_expand=facility')
 
     const facilityMinerals = await response.json()
 
@@ -18,7 +18,7 @@ const generateOptions = async (id) => {
 
     facilityMinerals.forEach(facility => {
         if (facility.facility.id == id) {
-            html += `<input type="radio" name="facilityMinerals" value="${facility.minerals.id}" /> ${facility.quantity} tons of ${facility.minerals.name}`
+            html += `<input type="radio" name="facilityMinerals" value="${facility.mineral.id}" /> ${facility.quantity} tons of ${facility.mineral.name}`
         }
     })
 
@@ -32,10 +32,12 @@ document.addEventListener(
         const {name, value} = changeEvent.target
         
         if (name === 'facilityMinerals') {
-            setFacilityMineral(value)
+            setFacilityMineral(parseInt(value))
         }
     }
 )
+
+let facilityMineral = 0
 
 document.addEventListener(
     'change',
@@ -43,8 +45,16 @@ document.addEventListener(
         const {id, value} = changeEvent.target
 
         if (id === 'facilities') {
-            setFacility(value)
-            document.querySelector("#facilityMinerals").innerHTML = await generateOptions(value)
+            facilityMineral = value
+            setFacility(parseInt(facilityMineral))
+            document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityMineral)
         }
+    }
+)
+
+document.addEventListener(
+    'generateFacilityAndColonyMinerals',
+    async () => {
+        document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityMineral)
     }
 )

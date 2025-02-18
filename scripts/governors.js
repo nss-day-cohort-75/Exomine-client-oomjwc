@@ -7,11 +7,11 @@ export const governorOptions = async() => {
 
     let governorHTML = ''
         governorHTML += '<select id="governor">'
-        governorHTML += '<option value="0">Choose a Governor</option>'
+        governorHTML += '<option value="0" colony="0">Choose a Governor</option>'
     const govStringArray = governors.map(
         (governor) => {
             if (governor.isActive === true)
-            return `<option value="${governor.id}">${governor.name}</option>`
+            return `<option value="${governor.id}" data-colony="${governor.coloniesId}">${governor.name}</option>`
         })
         governorHTML += govStringArray.join('')
         governorHTML += '</select>'

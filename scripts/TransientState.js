@@ -40,18 +40,6 @@ export const getFacilityMineral = () => {
 }
 
 export const purchaseMineral = async () => {
-    /*
-        Does the chosen governor's colony already own some of this mineral?
-            - If yes, what should happen?
-            - If no, what should happen?
-
-        Defining the algorithm for this method is traditionally the hardest
-        task for teams during this group project. It will determine when you
-        should use the method of POST, and when you should use PUT.
-
-        Only the foolhardy try to solve this problem with code.
-    */
-
     const colonyResponse = await fetch('http://localhost:8088/colonyMinerals')
     const colonyMinerals = await colonyResponse.json()
 
@@ -60,48 +48,72 @@ export const purchaseMineral = async () => {
 
     let colonyOwn = false
 
-    colonyMinerals.filter(joinTable => {
-        if (joinTable.mineraId === state.colonyMineralId && joinTable.colonyId === state.colonyId) {
+    colonyMinerals.filter(joinTable => { //iterates through colonyMinerals to find if colony owns the selected mineral
+        if (joinTable.mineralId === state.facilityMineralId && joinTable.colonyId === state.colonyId) { // if the colony owns material sets value to
             colonyOwn = true
         }
     })
 
-    if (colonyOwn) {
-        colonyMinerals.filter(joinTable => {
+    if (colonyOwn) { //if material is owned
+        colonyMinerals.filter(C_JoinTable => { //filters colonymMinerals joinTables to find the one that has the material
 
-            if (joinTable.mineralId === state.colonyMineralId && joinTable.colonyId === state.colonyId) {
+            if (C_JoinTable.mineralId === state.facilityMineralId && C_JoinTable.colonyId === state.colonyId) {
 
-                facilityMinerals.filter(joinTable => {
+                facilityMinerals.filter(F_JoinTable => { //filters facilityMinerals joinTables to find the one that has the material
 
-                    if (joinTable.mineralsId === state.facilityMineralId && joinTable.colonyId === state.facilityId) {
+                    if (F_JoinTable.mineralId === state.facilityMineralId && F_JoinTable.facilityId === state.facilityId) {
 
-                        //use PUT to update facilityMinerals with -1 and colonyMinerals with +1
+                        const facilitiesUpdate = { //declares formated updated joinTable for easy reading
+                            "facilityId": state.facilityId,
+                            "mineralId": state.facilityMineralId,
+                            "quantity": F_JoinTable.quantity - 1
+                        }
+
+                        put(facilitiesUpdate, `/facilityMinerals/${F_JoinTable.id}`) //uses PUT to update facilityMinerals with -1 of the selected mineral
+
+                        const coloniesUpdate = { //declares formated updated joinTable for easy reading
+                            "colonyId": state.colonyId,
+                            "mineralId": state.facilityMineralId,
+                            "quantity": C_JoinTable.quantity + 1
+                        }
+
+                        put(coloniesUpdate, `/colonyMinerals/${C_JoinTable.id}`) //uses PUT to update colonyMinerals with +1 of the selected mineral
                     }
                 })
             }
         })
-    } else {
-        //use POST to create new join table for colonyMinerals
+    } else { // if material is not owned
 
-        post({ "colonyId": state.colonyId, "mineralId": state.facilityMineralId, "quantity": 1 })
+        facilityMinerals.filter(facilitiesJoinTable => { //filters facilityMinerals joinTables to find the one that has the material
 
-        facilityMinerals.filter(joinTable => {
+            if (facilitiesJoinTable.mineralId === state.facilityMineralId && facilitiesJoinTable.facilityId === state.facilityId) {
 
-            if (joinTable.mineralsId === state.facilityMineralId && joinTable.facilityId === state.facilityId) {
+                const facilitiesUpdate = { //declares formated updated joinTable for easy reading
+                    "facilityId": facilitiesJoinTable.facilityId,
+                    "mineralId": facilitiesJoinTable.mineralId,
+                    "quantity": facilitiesJoinTable.quantity - 1
+                }
 
-                //use PUT to update facility inventory with -1
-
-                Put({"id": joinTable.id,"facilityId": joinTable.facilityId,"mineralsId": joinTable.mineralsId,"quantity": joinTable.quantity -1},joinTable.id)
+                put(facilitiesUpdate, `/facilityMinerals/${facilitiesJoinTable.id}`) //uses PUT to update facilityMinerals with -1 of the selected mineral
             }
         })
+
+        const coloniesUpdate = { //declares formated updated joinTable for easy reading
+            "colonyId": state.colonyId,
+            "mineralId": state.facilityMineralId,
+            "quantity": 1
+        }
+
+        coloniesPost(coloniesUpdate) //uses coloniesPost to create new joinTable
     }
 
 
-    document.dispatchEvent(new CustomEvent("purchaseSubmitted"))
+    document.dispatchEvent(new CustomEvent("generateFacilityAndColonyMinerals"))
+    document.dispatchEvent(new CustomEvent('purchaseSubmitted'))
 }
 
 
-const post = async (objectToPost) => {
+const coloniesPost = async (objectToPost) => {
     const postOptions = {
         method: "POST",
         headers: {
@@ -112,7 +124,7 @@ const post = async (objectToPost) => {
     const response = await fetch('http://localhost:8088/colonyMinerals', postOptions)
 }
 
-const Put = async (objectToPut, joinTableId) => {
+const put = async (objectToPut, joinTableId) => {
     const postOptions = {
         method: "PUT",
         headers: {
@@ -120,5 +132,5 @@ const Put = async (objectToPut, joinTableId) => {
         },
         body: JSON.stringify(objectToPut)
     }
-    const response = await fetch(`http://localhost:8088/colonyMinerals${joinTableId}`, postOptions)
+    const response = await fetch(`http://localhost:8088${joinTableId}`, postOptions)
 }
