@@ -10,8 +10,9 @@ export const getFacilities = async () => {
     }).join('')
 
     const facilitiesHTML = `
+    <label for="facilities"> Choose a Facility:</label>
     <select id="facilities">
-        <option value="0">Choose a facility</option>
+        <option value="0">Choose a facility...</option>
         ${facilityOptions}
     </select>
     `
