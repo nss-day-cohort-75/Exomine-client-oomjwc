@@ -1,3 +1,5 @@
+import { resetTransientState } from "./TransientState.js"
+
 export const getFacilities = async () => {
     const response = await fetch('http://localhost:8088/facilities')
 
@@ -9,13 +11,26 @@ export const getFacilities = async () => {
         }
     }).join('')
 
-    const facilitiesHTML = `
+    return `
     <label for="facilities"> Choose a Facility:</label>
-    <select id="facilities">
+    <select id="facilities" disabled>
         <option value="0">Choose a facility...</option>
         ${facilityOptions}
     </select>
     `
-
-    return facilitiesHTML
 }
+
+document.addEventListener(
+    'change',
+    (changeEvent) => {
+        if (changeEvent.target.id === "governor") {
+            if (changeEvent.target.value > 0) {
+                facilities.disabled = false
+            } else if (changeEvent.target.value === '0'){
+                facilities.disabled = true
+                resetTransientState()
+                document.dispatchEvent(new CustomEvent("render"))
+            }
+        } 
+    }
+)

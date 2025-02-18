@@ -64,11 +64,11 @@ note over main.js: render cart inventory
 User->cartButton.js:click purchase minerals button
 cartButton.js->transientState.js:call for transient state to become permanent state
 database.json<--transientState.js:push transient state to database as a permanent order
-facilitiesMinerals.js<--cartButton.js:call for mineral inventory to be updated
+facilitiesMinerals.js<--transientState.js:call for mineral inventory to be updated
 
 main.js<--facilitiesMinerals.js:call for mineral inventory to be rerendered
 note over main.js:render minerals
-colonies.js<--cartButton.js:call for colony inventory to be updated
+colonies.js<--transientState.js:call for colony inventory to be updated
 main.js<--colonies.js:call for colony inventory to be rerendered
 note over main.js:render colony
 
