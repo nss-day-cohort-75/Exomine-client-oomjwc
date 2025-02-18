@@ -1,7 +1,11 @@
 import { getFacility, getFacilityMineral } from "./TransientState.js"
 
 export const Cart = async () => {
-    return '<section id="cartInventory">SpaceCart</section>'
+    return `
+    <div id="purchaseContainer">
+    <h2>Space Cart</h2>
+    <section id="cartInventory"></section>
+    </div> `
 }
 
 const getFacilityFromIndex = async () => {

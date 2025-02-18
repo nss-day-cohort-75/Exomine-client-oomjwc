@@ -40,6 +40,12 @@ export const getFacilityMineral = () => {
 }
 
 export const purchaseMineral = async () => {
+
+    if (state.facilityId === 0 || state.facilityMineralId === 0 || state.colonyId === 0) 
+        { window.alert("Purchase failed: select all options before purchasing"); return;}
+    
+
+    
     const colonyResponse = await fetch('http://localhost:8088/colonyMinerals')
     const colonyMinerals = await colonyResponse.json()
 
@@ -55,7 +61,7 @@ export const purchaseMineral = async () => {
     })
 
     if (colonyOwn) { //if material is owned
-        colonyMinerals.filter(C_JoinTable => { //filters colonymMinerals joinTables to find the one that has the material
+        colonyMinerals.filter(C_JoinTable => { //filters colonyMinerals joinTables to find the one that has the material
 
             if (C_JoinTable.mineralId === state.facilityMineralId && C_JoinTable.colonyId === state.colonyId) {
 
@@ -63,7 +69,7 @@ export const purchaseMineral = async () => {
 
                     if (F_JoinTable.mineralId === state.facilityMineralId && F_JoinTable.facilityId === state.facilityId) {
 
-                        const facilitiesUpdate = { //declares formated updated joinTable for easy reading
+                        const facilitiesUpdate = { //declares formatted updated joinTable for easy reading
                             "facilityId": state.facilityId,
                             "mineralId": state.facilityMineralId,
                             "quantity": F_JoinTable.quantity - 1
@@ -71,7 +77,7 @@ export const purchaseMineral = async () => {
 
                         put(facilitiesUpdate, `/facilityMinerals/${F_JoinTable.id}`) //uses PUT to update facilityMinerals with -1 of the selected mineral
 
-                        const coloniesUpdate = { //declares formated updated joinTable for easy reading
+                        const coloniesUpdate = { //declares formatted updated joinTable for easy reading
                             "colonyId": state.colonyId,
                             "mineralId": state.facilityMineralId,
                             "quantity": C_JoinTable.quantity + 1
@@ -88,7 +94,7 @@ export const purchaseMineral = async () => {
 
             if (facilitiesJoinTable.mineralId === state.facilityMineralId && facilitiesJoinTable.facilityId === state.facilityId) {
 
-                const facilitiesUpdate = { //declares formated updated joinTable for easy reading
+                const facilitiesUpdate = { //declares formatted updated joinTable for easy reading
                     "facilityId": facilitiesJoinTable.facilityId,
                     "mineralId": facilitiesJoinTable.mineralId,
                     "quantity": facilitiesJoinTable.quantity - 1
@@ -98,7 +104,7 @@ export const purchaseMineral = async () => {
             }
         })
 
-        const coloniesUpdate = { //declares formated updated joinTable for easy reading
+        const coloniesUpdate = { //declares formatted updated joinTable for easy reading
             "colonyId": state.colonyId,
             "mineralId": state.facilityMineralId,
             "quantity": 1
@@ -106,7 +112,10 @@ export const purchaseMineral = async () => {
 
         coloniesPost(coloniesUpdate) //uses coloniesPost to create new joinTable
     }
-
+    const resetTransientState = () => {
+        state.facilityMineralId = 0;
+    }
+resetTransientState ()
 
     document.dispatchEvent(new CustomEvent("generateFacilityAndColonyMinerals"))
     document.dispatchEvent(new CustomEvent('purchaseSubmitted'))
