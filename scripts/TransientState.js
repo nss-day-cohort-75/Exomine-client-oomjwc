@@ -39,13 +39,23 @@ export const getFacilityMineral = () => {
     return state.facilityMineralId
 }
 
+export const resetTransientState = () => {
+    state.governorId = 0
+    state.colonyId = 0
+    state.colonyMineralId = 0
+    state.facilityMineralId = 0
+    state.facilityId = 0
+    console.table(state)
+}
+
 export const purchaseMineral = async () => {
 
-    if (state.facilityId === 0 || state.facilityMineralId === 0 || state.colonyId === 0) 
-        { window.alert("Purchase failed: select all options before purchasing"); return;}
-    
+    if (state.facilityId === 0 || state.facilityMineralId === 0 || state.colonyId === 0) {
+        window.alert("Purchase failed: select all options before purchasing"); return;
+    }
 
-    
+
+
     const colonyResponse = await fetch('http://localhost:8088/colonyMinerals')
     const colonyMinerals = await colonyResponse.json()
 
@@ -115,7 +125,7 @@ export const purchaseMineral = async () => {
     const resetTransientState = () => {
         state.facilityMineralId = 0;
     }
-resetTransientState ()
+    resetTransientState()
 
     document.dispatchEvent(new CustomEvent("generateFacilityAndColonyMinerals"))
     document.dispatchEvent(new CustomEvent('purchaseSubmitted'))

@@ -49,3 +49,5 @@ const render = async () => {
 }
 
 render()
+
+document.addEventListener('render', render)
