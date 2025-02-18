@@ -29,7 +29,7 @@ label {
     width: 50%;
     margin: 20px auto;
 }
-#purchaseContainer {
+#purchaseContainer, #purchaseMineral{
     width: 20%; 
     margin-left: auto; 
     padding: 20px;
@@ -40,6 +40,10 @@ label {
     flex-direction: column; 
     align-items: center; 
     gap: 10px; 
+}
+
+#cartInventory {
+    text-align: center;
 }
 
 #governor, #facilities {

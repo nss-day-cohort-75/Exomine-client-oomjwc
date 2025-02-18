@@ -1,10 +1,10 @@
 import { purchaseMineral } from "./TransientState.js"
 
 export const purchaseOrderButton = () => {
-
-    let html = "<button id='purchaseMineral'>Purchase Mineral</button>"
-    return html
-}
+        return `
+                <button id="purchaseMineral">Purchase Mineral</button>
+        `
+    }
 
 export const handlePurchaseMineral = (clickEvent) => {
     if (clickEvent.target.id === "purchaseMineral"){

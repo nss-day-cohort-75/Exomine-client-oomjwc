@@ -67,8 +67,8 @@ let transferVariable = 0
 document.addEventListener("change", async (event) => {
   if (event.target.id === "governor") {
     const selectedGovernorId = parseInt(event.target.value);
-    updateColonyInventory(selectedGovernorId);
     transferVariable = selectedGovernorId
+    await updateColonyInventory(selectedGovernorId);
 
     const selectedOption = event.target.options[event.target.selectedIndex]
     setColony(parseInt(selectedOption.dataset.colony))
@@ -78,6 +78,6 @@ document.addEventListener("change", async (event) => {
 document.addEventListener(
   'generateFacilityAndColonyMinerals',
   () => {
-      document.querySelector("#inventoryList").innerHTML = updateColonyInventory(transferVariable)
+      document.querySelector("#colonyInventory").innerHTML = updateColonyInventory(transferVariable)
     }
 )
