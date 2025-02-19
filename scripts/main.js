@@ -16,8 +16,6 @@ const render = async () => {
     const cartHTML = await Cart()
 
     const composedHTML = `
-    <h1>Solar System Mining System</h1>
-    
     <article class="choices">
         <section class="choices__governor">
             ${governorHTML}
@@ -29,20 +27,18 @@ const render = async () => {
 
     </article>
 
-    <article class="colonyMinerals">
-        ${colonyMineralsHTML}
-    </article>
+    ${facilityMineralsHTML}
 
-    <article class="transaction">
-        <section class="facilityMinerals">
-            ${facilityMineralsHTML}
-        </section>
+    <section id="colonyCart">
+        <article class="colonyMinerals">
+            ${colonyMineralsHTML}
+        </article>
 
         <section class="cart">
             ${cartHTML}
             ${cartButtonHTML}
         </section>
-    </article>
+    </section>
 
     `
     container.innerHTML = composedHTML

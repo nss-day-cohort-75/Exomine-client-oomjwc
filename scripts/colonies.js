@@ -3,9 +3,9 @@ import { setColony } from "./TransientState.js";
 // provides HTML for structure of inventory display
 export const colonyMinerals = async () => {
   return `
-        <section id="colonyInventory"> <ul
-            <li>Minerals</li>
-            </ul>
+        <section id="colonyInventory"> <div>
+            <h2>Minerals</li>
+            </div>
         </section>
     `;
 };
@@ -48,7 +48,7 @@ const updateColonyInventory = async (selectedGovernorId) => {
     const mineral = data.minerals.find(
       (mineral) => mineral.id === colonyMineral.mineralId
     ); // find mineral name
-    return `<li>${mineral.name}: ${colonyMineral.quantity} tons</li>`; // HTML of name and quantity
+    return `<div>${mineral.name}: ${colonyMineral.quantity} tons</div>`; // HTML of name and quantity
   });
 
   document.getElementById("colonyInventory").innerHTML =
