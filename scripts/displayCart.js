@@ -32,6 +32,6 @@ document.addEventListener(
 document.addEventListener(
     "purchaseSubmitted",
     () => {
-        document.querySelector("#cartInventory").innerHTML = `SpaceCart`
+        document.querySelector("#cartInventory").innerHTML = ``
 })
 
