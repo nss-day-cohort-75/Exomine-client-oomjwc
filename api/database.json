@@ -75,13 +75,13 @@
     {
       "colonyId": 1,
       "mineralId": 1,
-      "quantity": 502,
+      "quantity": 503,
       "id": 1
     },
     {
       "colonyId": 2,
       "mineralId": 2,
-      "quantity": 752,
+      "quantity": 753,
       "id": 2
     },
     {
@@ -99,7 +99,7 @@
     {
       "colonyId": 5,
       "mineralId": 5,
-      "quantity": 905,
+      "quantity": 906,
       "id": 5
     },
     {
@@ -109,27 +109,27 @@
       "quantity": 750
     },
     {
-      "id": 7,
       "colonyId": 3,
       "mineralId": 2,
-      "quantity": 1200
+      "quantity": 1201,
+      "id": 7
     },
     {
-      "id": 8,
       "colonyId": 4,
       "mineralId": 3,
-      "quantity": 450
+      "quantity": 451,
+      "id": 8
     },
     {
       "colonyId": 1,
       "mineralId": 5,
-      "quantity": 3,
+      "quantity": 4,
       "id": 9
     },
     {
       "colonyId": 2,
       "mineralId": 3,
-      "quantity": 5,
+      "quantity": 7,
       "id": 10
     },
     {
@@ -137,6 +137,30 @@
       "mineralId": 1,
       "quantity": 1,
       "id": 11
+    },
+    {
+      "colonyId": 2,
+      "mineralId": 5,
+      "quantity": 1,
+      "id": 12
+    },
+    {
+      "colonyId": 4,
+      "mineralId": 5,
+      "quantity": 1,
+      "id": 13
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 5,
+      "quantity": 2,
+      "id": 14
+    },
+    {
+      "colonyId": 5,
+      "mineralId": 3,
+      "quantity": 2,
+      "id": 15
     }
   ],
   "minerals": [
@@ -177,7 +201,7 @@
     {
       "facilityId": 3,
       "mineralId": 3,
-      "quantity": 152,
+      "quantity": 148,
       "id": 3
     },
     {
@@ -189,7 +213,7 @@
     {
       "facilityId": 5,
       "mineralId": 5,
-      "quantity": 597,
+      "quantity": 593,
       "id": 5
     },
     {
@@ -201,13 +225,13 @@
     {
       "facilityId": 3,
       "mineralId": 2,
-      "quantity": 104,
+      "quantity": 102,
       "id": 7
     },
     {
       "facilityId": 5,
       "mineralId": 3,
-      "quantity": 161,
+      "quantity": 159,
       "id": 8
     },
     {
@@ -219,7 +243,7 @@
     {
       "facilityId": 1,
       "mineralId": 5,
-      "quantity": 593,
+      "quantity": 591,
       "id": 10
     }
   ],

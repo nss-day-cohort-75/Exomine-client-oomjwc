@@ -1,11 +1,5 @@
 import { setColony } from "./TransientState.js";
 
-// fetches  colony mineral data
-export const colonyMineralsInventory = async () => {
-  const response = await fetch("http://localhost:8088/colonyMinerals"); 
-  const data = await response.json();
-  return data;
-};
 // provides HTML for structure of inventory display
 export const colonyMinerals = async () => {
   return `
@@ -17,19 +11,18 @@ export const colonyMinerals = async () => {
 };
 //Function to update mineral inventory when governor selected
 const updateColonyInventory = async (selectedGovernorId) => {
-    
   const fetchData = async () => {
-    const response1 = await fetch("http://localhost:8088/governors");
-    const governors = await response1.json();
+    const urls = [
+      "http://localhost:8088/governors",
+      "http://localhost:8088/colonies",
+      "http://localhost:8088/colonyMinerals",
+      "http://localhost:8088/minerals",
+    ];
 
-    const response2 = await fetch("http://localhost:8088/colonies");
-    const colonies = await response2.json();
-
-    const response3 = await fetch("http://localhost:8088/colonyMinerals");
-    const colonyMineralData = await response3.json();
-
-    const response4 = await fetch("http://localhost:8088/minerals");
-    const minerals = await response4.json();
+    const [governors, colonies, colonyMineralData, minerals] =
+      await Promise.all(
+        urls.map((url) => fetch(url).then((res) => res.json())) //.map loops through url array,fetch returns the promise, .then(res coverts response to JSON
+      );
 
     // Store fetched data in an object for later use
     return { governors, colonies, colonyMineralData, minerals };
@@ -37,7 +30,8 @@ const updateColonyInventory = async (selectedGovernorId) => {
   const data = await fetchData();
 
   const selectedGovernor = data.governors.find(
-    (gov) => gov.id === selectedGovernorId); // find selected gov
+    (gov) => gov.id === selectedGovernorId
+  ); // find selected gov
 
   const colonyId = selectedGovernor.coloniesId; // get their assigned colony ID
 
@@ -61,23 +55,19 @@ const updateColonyInventory = async (selectedGovernorId) => {
     colonyName + colonyMineralHTML.join("");
 };
 
-let transferVariable = 0
-
 // listens for changes in the governor drop down
 document.addEventListener("change", async (event) => {
   if (event.target.id === "governor") {
     const selectedGovernorId = parseInt(event.target.value);
-    transferVariable = selectedGovernorId
     await updateColonyInventory(selectedGovernorId);
 
-    const selectedOption = event.target.options[event.target.selectedIndex]
-    setColony(parseInt(selectedOption.dataset.colony))
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    setColony(parseInt(selectedOption.dataset.colony));
   }
 });
 
-document.addEventListener(
-  'generateFacilityAndColonyMinerals',
-  () => {
-      document.querySelector("#colonyInventory").innerHTML = updateColonyInventory(transferVariable)
-    }
-)
+document.addEventListener("generateFacilityAndColonyMinerals", async () => {
+  const governorId = parseInt(document.querySelector("#governor").value);
+  if (governorId) { await updateColonyInventory(governorId)}
+
+});
