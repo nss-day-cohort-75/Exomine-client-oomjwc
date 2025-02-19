@@ -66,7 +66,7 @@ document.addEventListener("change", async (event) => {
   }
 });
 
-document.addEventListener("generateFacilityAndColonyMinerals", async () => {
+document.addEventListener("purchaseSubmitted", async () => {
   const governorId = parseInt(document.querySelector("#governor").value);
   if (governorId) { await updateColonyInventory(governorId)}
 

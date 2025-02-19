@@ -53,7 +53,7 @@ document.addEventListener(
 )
 
 document.addEventListener(
-    'generateFacilityAndColonyMinerals',
+    'purchaseSubmitted',
     async () => {
         document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityMineral)
     }

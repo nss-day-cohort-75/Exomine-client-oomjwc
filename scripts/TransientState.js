@@ -55,7 +55,7 @@ export const purchaseMineral = async () => {
 
     let createPost = true
 
-    colonyMinerals.filter(joinTable => {
+    for (const joinTable of colonyMinerals) {
         if (joinTable.colonyId === state.colonyId && joinTable.mineralId === facilityJoinTable.mineralId) {
             const colonyUpdate = 
             {
@@ -63,7 +63,7 @@ export const purchaseMineral = async () => {
                 mineralId: facilityJoinTable.mineralId,
                 quantity: joinTable.quantity + 1,
             }
-            put(colonyUpdate, `/colonyMinerals/${joinTable.id}`)
+            await put(colonyUpdate, `/colonyMinerals/${joinTable.id}`)
 
             const facilityUpdate = 
             {
@@ -72,11 +72,11 @@ export const purchaseMineral = async () => {
                 quantity: facilityJoinTable.quantity - 1,
             }
 
-            put(facilityUpdate, `/facilityMinerals/${facilityJoinTable.id}`)
+            await put(facilityUpdate, `/facilityMinerals/${facilityJoinTable.id}`)
 
             createPost = false
         }
-    })
+    }
 
     if (createPost) {
 
@@ -87,7 +87,7 @@ export const purchaseMineral = async () => {
                 quantity: 1,
             }
 
-        coloniesPost(colonyUpdate)
+        await coloniesPost(colonyUpdate)
 
         const facilityUpdate = 
             {
@@ -96,7 +96,7 @@ export const purchaseMineral = async () => {
                 quantity: facilityJoinTable.quantity - 1,
             }
 
-        put(facilityUpdate, `/facilityMinerals/${facilityJoinTable.id}`)
+        await put(facilityUpdate, `/facilityMinerals/${facilityJoinTable.id}`)
 
     }
 
@@ -105,7 +105,6 @@ export const purchaseMineral = async () => {
     }
     resetMineralId()
 
-    document.dispatchEvent(new CustomEvent("generateFacilityAndColonyMinerals"))
     document.dispatchEvent(new CustomEvent('purchaseSubmitted'))
 }
 
@@ -118,7 +117,7 @@ const coloniesPost = async (objectToPost) => {
         },
         body: JSON.stringify(objectToPost)
     }
-    const response = await fetch('http://localhost:8088/colonyMinerals', postOptions)
+    await fetch('http://localhost:8088/colonyMinerals', postOptions)
 }
 
 const put = async (objectToPut, joinTableId) => {
@@ -129,5 +128,5 @@ const put = async (objectToPut, joinTableId) => {
         },
         body: JSON.stringify(objectToPut)
     }
-    const response = await fetch(`http://localhost:8088${joinTableId}`, postOptions)
+    await fetch(`http://localhost:8088${joinTableId}`, postOptions)
 }
