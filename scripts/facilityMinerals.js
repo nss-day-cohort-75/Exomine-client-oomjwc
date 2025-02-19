@@ -18,7 +18,7 @@ const generateOptions = async (id) => {
 
     facilityMinerals.forEach(facility => {
         if (facility.facility.id == id && facility.quantity > 0) {
-            html += `<input type="radio" name="facilityMinerals" value="${facility.mineral.id}" /> ${facility.quantity} tons of ${facility.mineral.name}`
+            html += `<input type="radio" name="facilityMinerals" value="${facility.id}" /> ${facility.quantity} tons of ${facility.mineral.name}`
         }
     })
 
