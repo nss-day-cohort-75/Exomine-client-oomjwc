@@ -84,7 +84,7 @@ export const purchaseMineral = async () => {
             {
                 colonyId: state.colonyId,
                 mineralId: facilityJoinTable.mineralId,
-                quantity: joinTable.quantity + 1,
+                quantity: 1,
             }
 
         coloniesPost(colonyUpdate)
