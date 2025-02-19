@@ -17,9 +17,9 @@ const getFacilityFromIndex = async () => {
 
 const getFacilityMineralFromIndex = async () => {
     const mineralId = getFacilityMineral()
-    const response = await fetch(`http://localhost:8088/minerals/${mineralId}`)
+    const response = await fetch(`http://localhost:8088/facilityMinerals/${mineralId}?_expand=mineral`)
     const mineral = await response.json()
-    return mineral.name
+    return mineral.mineral.name
 }
 
 document.addEventListener(
