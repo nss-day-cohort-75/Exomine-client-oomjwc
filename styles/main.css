@@ -55,6 +55,11 @@ label {
     background-color:steelblue;
     color:chartreuse
 }
+#purchaseMineral:hover {
+    background-color:deepskyblue;  
+    color:chartreuse;  
+    transform: scale(1.1); 
+  }
 
 #cartInventory {
     text-align: center;
