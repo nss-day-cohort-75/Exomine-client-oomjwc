@@ -13,17 +13,21 @@ const generateOptions = async (id) => {
         facilityMinerals.forEach(facility => {
             if (facility.facility.id == id) {
                 html = `<h2>Facility Minerals for ${facility.facility.name}</h2>`
+            } else if(id == 0) {
+                html = `<h2>Facility Minerals</h2>`
             }
         });
 
+    let options = ''
+
     facilityMinerals.forEach(facility => {
         if (facility.facility.id == id && facility.quantity > 0) {
-            html += `<input type="radio" name="facilityMinerals" value="${facility.id}" /> ${facility.quantity} tons of ${facility.mineral.name}`
+            options += `<input type="radio" name="facilityMinerals" value="${facility.id}" /> ${facility.quantity} tons of ${facility.mineral.name}`
         }
     })
 
 
-    return html
+    return `${html} <section> ${options} </section>`
 }
 
 document.addEventListener(
@@ -37,17 +41,14 @@ document.addEventListener(
     }
 )
 
-let facilityMineral = 0
-
 document.addEventListener(
     'change',
     async (changeEvent) => {
         const {id, value} = changeEvent.target
 
         if (id === 'facilities') {
-            facilityMineral = value
-            setFacility(parseInt(facilityMineral))
-            document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityMineral)
+            setFacility(parseInt(value))
+            document.querySelector("#facilityMinerals").innerHTML = await generateOptions(value)
         }
     }
 )
@@ -55,6 +56,7 @@ document.addEventListener(
 document.addEventListener(
     'purchaseSubmitted',
     async () => {
-        document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityMineral)
+        const facilityId = document.querySelector("#facilities").value
+        document.querySelector("#facilityMinerals").innerHTML = await generateOptions(facilityId)
     }
 )
